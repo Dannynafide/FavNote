@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import SingleCardTemplate from 'templates/SingleCardTemplate';
-import { fetchItems } from 'features/rootSlice';
+import { fetchItems } from 'features/root/rootSlice';
+import UserPageTemplate from 'templates/UserPageTemplate';
 
 const SingleCardPage = ({ match }) => {
   const { id, page } = match.params;
@@ -19,21 +20,25 @@ const SingleCardPage = ({ match }) => {
 
   if (!card) {
     return (
-      <section>
-        <h2>Page not found!</h2>
-      </section>
+      <UserPageTemplate>
+        <section>
+          <h2>Page not found!</h2>
+        </section>
+      </UserPageTemplate>
     );
   }
 
   return (
-    <SingleCardTemplate
-      id={card.id}
-      title={card.title}
-      created={card.created}
-      content={card.content}
-      articleUrl={card.articleUrl}
-      twitterName={card.twitterName}
-    />
+    <UserPageTemplate>
+      <SingleCardTemplate
+        id={card.id}
+        title={card.title}
+        created={card.created}
+        content={card.content}
+        articleUrl={card.articleUrl}
+        twitterName={card.twitterName}
+      />
+    </UserPageTemplate>
   );
 };
 

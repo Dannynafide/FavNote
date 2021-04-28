@@ -34,8 +34,9 @@ export const signUpAsync = createAsyncThunk(
 );
 
 export const signOutAsync = createAsyncThunk('auth/signOutAsync', async () => {
-  await auth().signOut();
-  return true;
+  const result = await auth().signOut();
+  localStorage.removeItem('authUser');
+  return result;
 });
 
 export const STATUS = {
@@ -52,7 +53,16 @@ const authSlice = createSlice({
     status: STATUS.idle,
     error: null, // string | null
   },
-  reducers: {},
+  reducers: {
+    signIn: (state, action) => {
+      state.user = action.payload;
+      state.status = STATUS.succeeded;
+    },
+    signOut: (state) => {
+      state.user = null;
+      state.status = STATUS.idle;
+    },
+  },
   extraReducers: {
     [signInAsync.pending || signUpAsync.pending]: (state) => {
       state.error = null;
@@ -91,5 +101,9 @@ const authSlice = createSlice({
     },
   },
 });
+
+export const { signIn, signOut } = authSlice.actions;
+
+export const selectCurrentUser = (state) => state.auth.user;
 
 export default authSlice.reducer;

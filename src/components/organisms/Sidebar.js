@@ -64,8 +64,6 @@ const Sidebar = ({ themeContext }) => {
         </nav>
 
         <ButtonIcon
-          // as={NavLink}
-          // to={routes.login}
           icon={faSignOutAlt}
           flip="horizontal"
           onClick={() => dispatch(signOutAsync())}

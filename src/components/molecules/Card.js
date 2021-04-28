@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import withContext from 'hoc/withContext';
-import { cardRemovedAsync } from 'features/rootSlice';
+import { cardRemovedAsync } from 'features/root/rootSlice';
 import Button from 'components/atoms/Button';
 import Heading from 'components/atoms/Heading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -141,6 +141,7 @@ const Card = ({
       <StyledLabel activecolor={themeContext}>
         <Heading as="h2">{title}</Heading>
         <DateInfo>{created}</DateInfo>
+
         {themeContext === 'twitters' && (
           <StyledAvatar
             src={`https://unavatar.now.sh/twitter/${twitterName}`}

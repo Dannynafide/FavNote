@@ -7,7 +7,7 @@ import withContext from 'hoc/withContext';
 import Heading from 'components/atoms/Heading';
 import { Input } from 'components/atoms/Input';
 import Button from 'components/atoms/Button';
-import { cardAddedAsync } from 'features/rootSlice';
+import { cardAddedAsync } from 'features/root/rootSlice';
 
 const StyledWrapper = styled.div`
   border-left: 10px solid ${({ theme, activecolor }) => theme[activecolor]};

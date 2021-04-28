@@ -5,11 +5,12 @@ import styled from 'styled-components';
 import withContext from 'hoc/withContext';
 import PropTypes from 'prop-types';
 
-import { cardUpdatedAsync } from 'features/rootSlice';
+import { cardUpdatedAsync } from 'features/root/rootSlice';
 
 import Heading from 'components/atoms/Heading';
 import { Input } from 'components/atoms/Input';
 import Button from 'components/atoms/Button';
+import UserPageTemplate from 'templates/UserPageTemplate';
 
 const StyledArticle = styled.article`
   padding: 20px 60px 20px 50px;
@@ -78,55 +79,57 @@ const EditCardForm = ({ match, themeContext }) => {
   };
 
   return (
-    <section className="newCard">
-      <StyledArticle>
-        <Heading big>Edit Card</Heading>
-        <StyledForm>
-          <StyledInput
-            type="text"
-            name="cardTitle"
-            id="cardTitle"
-            placeholder="title"
-            onChange={onTitleChanged}
-            value={title}
-          />
-          {themeContext === 'twitters' && (
+    <UserPageTemplate>
+      <section className="newCard">
+        <StyledArticle>
+          <Heading big>Edit Card</Heading>
+          <StyledForm>
             <StyledInput
-              placeholder="twitter name eg. hello_roman"
               type="text"
-              name="twitterName"
-              onChange={onTwitterNameChanged}
-              value={twitterName}
+              name="cardTitle"
+              id="cardTitle"
+              placeholder="title"
+              onChange={onTitleChanged}
+              value={title}
             />
-          )}
-          {themeContext === 'articles' && (
-            <StyledInput
-              placeholder="link"
-              type="text"
-              name="articleUrl"
-              onChange={onArticleUrlChanged}
-              value={articleUrl}
-            />
-          )}
+            {themeContext === 'twitters' && (
+              <StyledInput
+                placeholder="twitter name eg. hello_roman"
+                type="text"
+                name="twitterName"
+                onChange={onTwitterNameChanged}
+                value={twitterName}
+              />
+            )}
+            {themeContext === 'articles' && (
+              <StyledInput
+                placeholder="link"
+                type="text"
+                name="articleUrl"
+                onChange={onArticleUrlChanged}
+                value={articleUrl}
+              />
+            )}
 
-          <StyledTextArea
-            id="cardContent"
-            name="cardContent"
-            as="textarea"
-            placeholder="Enter a content"
-            onChange={onContentChanged}
-            value={content}
-          />
-          <Button
-            type="submit"
-            activecolor={themeContext}
-            onClick={onSaveCardClicked}
-          >
-            Save Post
-          </Button>
-        </StyledForm>
-      </StyledArticle>
-    </section>
+            <StyledTextArea
+              id="cardContent"
+              name="cardContent"
+              as="textarea"
+              placeholder="Enter a content"
+              onChange={onContentChanged}
+              value={content}
+            />
+            <Button
+              type="submit"
+              activecolor={themeContext}
+              onClick={onSaveCardClicked}
+            >
+              Save Post
+            </Button>
+          </StyledForm>
+        </StyledArticle>
+      </section>
+    </UserPageTemplate>
   );
 };
 

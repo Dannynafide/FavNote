@@ -1,5 +1,5 @@
 import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
-import { db } from '../services/firebase';
+import { db } from '../../services/firebase';
 
 export const fetchItems = createAsyncThunk(
   'root/fetchItems',
@@ -250,6 +250,11 @@ const rootSlice = createSlice({
         if (articleUrl) existingCard.articleUrl = articleUrl;
       }
     },
+    reset(state) {
+      state.notes = [];
+      state.twitters = [];
+      state.articles = [];
+    },
   },
   extraReducers: {
     [fetchItems.fulfilled]: (state, action) => {
@@ -267,6 +272,6 @@ const rootSlice = createSlice({
   },
 });
 
-export const { cardAdded, cardRemoved, cardUpdated } = rootSlice.actions;
+export const { cardAdded, cardRemoved, cardUpdated, reset } = rootSlice.actions;
 
 export default rootSlice.reducer;

@@ -8,7 +8,6 @@ import Button from 'components/atoms/Button';
 import Heading from 'components/atoms/Heading';
 
 const StyledArticle = styled.article`
-  padding: 20px 60px 20px 50px;
   max-width: 50vw;
   position: relative;
 

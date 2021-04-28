@@ -3,15 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Card from 'components/molecules/Card';
 import GridTemplate from 'templates/GridTemplate';
-import { fetchItems } from 'features/rootSlice';
+import { fetchItems } from 'features/root/rootSlice';
 
 export default function Articles() {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.root.articles);
+  const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {
     dispatch(fetchItems({ itemType: 'articles' }));
-  }, []);
+  }, [items, user]);
 
   const listItems = items.map(({ id, title, content, created, articleUrl }) => (
     <Card

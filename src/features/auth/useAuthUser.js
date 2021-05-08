@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { auth } from 'services/firebase';
 import { signIn, signOut } from 'features/auth/authSlice';
 import { reset } from 'features/root/rootSlice';
+import { routes } from 'routes';
 
 export default () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export default () => {
         dispatch(signOut());
         localStorage.removeItem('authUser');
         dispatch(reset());
-        history.push('/login');
+        history.push(routes.login);
       }
     };
 
